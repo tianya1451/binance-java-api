@@ -35,14 +35,14 @@ public class OrdersExampleAsync {
         response -> System.out.println(response));
 
     // Placing a test LIMIT order
-    client.newOrderTest(limitBuy("LINKETH", TimeInForce.GTC, "1000", "0.0001"),
+    client.newOrderTest(limitBuy("LINKETH", "1000", "0.0001"),
         response -> System.out.println("Test order has succeeded."));
 
     // Placing a test MARKET order
     client.newOrderTest(marketBuy("LINKETH", "1000"), response -> System.out.println("Test order has succeeded."));
 
     // Placing a real LIMIT order
-    client.newOrder(limitBuy("LINKETH", TimeInForce.GTC, "1000", "0.0001"),
+    client.newOrder(limitBuy("LINKETH", "1000", "0.0001"),
         response -> System.out.println(response));
   }
 }

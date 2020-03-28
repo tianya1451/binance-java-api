@@ -48,13 +48,13 @@ public class OrdersExample {
     }
 
     // Placing a test LIMIT order
-    client.newOrderTest(limitBuy("LINKETH", TimeInForce.GTC, "1000", "0.0001"));
+    client.newOrderTest(limitBuy("LINKETH", "1000", "0.0001"));
 
     // Placing a test MARKET order
     client.newOrderTest(marketBuy("LINKETH", "1000"));
 
     // Placing a real LIMIT order
-    NewOrderResponse newOrderResponse = client.newOrder(limitBuy("LINKETH", TimeInForce.GTC, "1000", "0.0001").newOrderRespType(NewOrderResponseType.FULL));
+    NewOrderResponse newOrderResponse = client.newOrder(limitBuy("LINKETH", "1000", "0.0001").newOrderRespType(NewOrderResponseType.FULL));
     System.out.println(newOrderResponse);
   }
 
