@@ -32,7 +32,7 @@ public class NewOrder {
   /**
    * Quantity.
    */
-  private String quantity;
+  private String quoteOrderQty;
 
   /**
    * Price.
@@ -72,11 +72,11 @@ public class NewOrder {
   /**
    * Creates a new order with all required parameters.
    */
-  public NewOrder(String symbol, OrderSide side, OrderType type,  String quantity) {
+  public NewOrder(String symbol, OrderSide side, OrderType type,  String quoteOrderQty) {
     this.symbol = symbol;
     this.side = side;
     this.type = type;
-    this.quantity = quantity;
+    this.quoteOrderQty = quoteOrderQty;
     this.newOrderRespType = NewOrderResponseType.RESULT;
     this.timestamp = System.currentTimeMillis();
     this.recvWindow = BinanceApiConstants.DEFAULT_RECEIVING_WINDOW;
@@ -118,12 +118,12 @@ public class NewOrder {
   }
 
 
-  public String getQuantity() {
-    return quantity;
+  public String getQuoteOrderQty() {
+    return quoteOrderQty;
   }
 
-  public NewOrder quantity(String quantity) {
-    this.quantity = quantity;
+  public NewOrder quoteOrderQty(String quoteOrderQty) {
+    this.quoteOrderQty = quoteOrderQty;
     return this;
   }
 
@@ -232,7 +232,7 @@ public class NewOrder {
         .append("symbol", symbol)
         .append("side", side)
         .append("type", type)
-        .append("quantity", quantity)
+        .append("quoteOrderQty", quoteOrderQty)
         .append("price", price)
         .append("newClientOrderId", newClientOrderId)
         .append("stopPrice", stopPrice)
