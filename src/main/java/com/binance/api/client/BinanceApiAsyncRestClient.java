@@ -174,7 +174,14 @@ public interface BinanceApiAsyncRestClient {
    * @param order the new order to submit.
    * @param callback the callback that handles the response
    */
-  void newOrder(NewOrder order, BinanceApiCallback<NewOrderResponse> callback);
+  void newOrderBuy(NewOrder order, BinanceApiCallback<NewOrderResponse> callback);
+  /**
+   * Send in a new order (asynchronous)
+   *
+   * @param order the new order to submit.
+   * @param callback the callback that handles the response
+   */
+  void newOrderSell(NewOrder order, BinanceApiCallback<NewOrderResponse> callback);
 
   /**
    * Test new order creation and signature/recvWindow long. Creates and validates a new order but does not send it into the matching engine.

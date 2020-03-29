@@ -8,8 +8,6 @@ import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.OrderRequest;
 import com.binance.api.client.domain.account.request.OrderStatusRequest;
 
-import static com.binance.api.client.domain.account.NewOrder.limitBuy;
-import static com.binance.api.client.domain.account.NewOrder.marketBuy;
 
 /**
  * Examples on how to place orders, cancel them, and query account information.
@@ -35,14 +33,5 @@ public class OrdersExampleAsync {
         response -> System.out.println(response));
 
     // Placing a test LIMIT order
-    client.newOrderTest(limitBuy("LINKETH", "1000", "0.0001"),
-        response -> System.out.println("Test order has succeeded."));
-
-    // Placing a test MARKET order
-    client.newOrderTest(marketBuy("LINKETH", "1000"), response -> System.out.println("Test order has succeeded."));
-
-    // Placing a real LIMIT order
-    client.newOrder(limitBuy("LINKETH", "1000", "0.0001"),
-        response -> System.out.println(response));
   }
 }

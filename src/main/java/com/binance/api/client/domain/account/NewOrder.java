@@ -82,13 +82,7 @@ public class NewOrder {
     this.recvWindow = BinanceApiConstants.DEFAULT_RECEIVING_WINDOW;
   }
 
-  /**
-   * Creates a new order with all required parameters plus price, which is optional for MARKET orders.
-   */
-  public NewOrder(String symbol, OrderSide side, OrderType type, String quantity, String price) {
-    this(symbol, side, type, quantity);
-    this.price = price;
-  }
+
 
   public String getSymbol() {
     return symbol;
@@ -190,41 +184,6 @@ public class NewOrder {
     return this;
   }
 
-  /**
-   * Places a MARKET buy order for the given <code>quantity</code>.
-   *
-   * @return a new order which is pre-configured with MARKET as the order type and BUY as the order side.
-   */
-  public static NewOrder marketBuy(String symbol, String quantity) {
-    return new NewOrder(symbol, OrderSide.BUY, OrderType.MARKET, null, quantity);
-  }
-
-  /**
-   * Places a MARKET sell order for the given <code>quantity</code>.
-   *
-   * @return a new order which is pre-configured with MARKET as the order type and SELL as the order side.
-   */
-  public static NewOrder marketSell(String symbol, String quantity) {
-    return new NewOrder(symbol, OrderSide.SELL, OrderType.MARKET, null, quantity);
-  }
-
-  /**
-   * Places a LIMIT buy order for the given <code>quantity</code> and <code>price</code>.
-   *
-   * @return a new order which is pre-configured with LIMIT as the order type and BUY as the order side.
-   */
-  public static NewOrder limitBuy(String symbol, String quantity, String price) {
-    return new NewOrder(symbol, OrderSide.BUY, OrderType.LIMIT, quantity, price);
-  }
-
-  /**
-   * Places a LIMIT sell order for the given <code>quantity</code> and <code>price</code>.
-   *
-   * @return a new order which is pre-configured with LIMIT as the order type and SELL as the order side.
-   */
-  public static NewOrder limitSell(String symbol,String quantity, String price) {
-    return new NewOrder(symbol, OrderSide.SELL, OrderType.LIMIT, quantity, price);
-  }
 
   @Override
   public String toString() {
