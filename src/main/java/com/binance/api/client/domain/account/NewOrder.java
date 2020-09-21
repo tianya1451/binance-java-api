@@ -53,6 +53,10 @@ public class NewOrder {
    * Used with iceberg orders.
    */
   private String icebergQty;
+  /**
+   * Used with iceberg orders.
+   */
+  private String timeInForce;
 
   /**
    * Set the response JSON. ACK, RESULT, or FULL; default: RESULT.
@@ -111,6 +115,17 @@ public class NewOrder {
     return this;
   }
 
+  public void setPrice(String price) {
+    this.price = price;
+  }
+
+  public String getTimeInForce() {
+    return timeInForce;
+  }
+
+  public void setTimeInForce(String timeInForce) {
+    this.timeInForce = timeInForce;
+  }
 
   public String getQuoteOrderQty() {
     return quoteOrderQty;

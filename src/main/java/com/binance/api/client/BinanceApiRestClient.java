@@ -170,6 +170,20 @@ public interface BinanceApiRestClient {
    * @return a response containing details about the newly placed order.
    */
   NewOrderResponse newOrderSell(NewOrder order);
+  /**
+   * Send in a new order.法币币种数量
+   *
+   * @param order the new order to submit.
+   * @return a response containing details about the newly placed order.
+   */
+  NewOrderResponse newOrderBuyLimit(NewOrder order);
+  /**
+   * Send in a new order.交易币种数量
+   *
+   * @param order the new order to submit.
+   * @return a response containing details about the newly placed order.
+   */
+  NewOrderResponse newOrderSellLimit(NewOrder order);
 
   /**
    * Test new order creation and signature/recvWindow long. Creates and validates a new order but does not send it into the matching engine.

@@ -142,6 +142,17 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   }
 
   @Override
+  public void newOrderBuyLimit(NewOrder order, BinanceApiCallback<NewOrderResponse> callback) {
+    binanceApiService.newOrderBuyLimit(order.getSymbol(), order.getSide(), order.getType(), order.getQuoteOrderQty(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
+        order.getIcebergQty(), order.getNewOrderRespType(), order.getRecvWindow(), order.getTimestamp(),order.getTimeInForce()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
+  @Override
+  public void newOrderSellLimit(NewOrder order, BinanceApiCallback<NewOrderResponse> callback) {
+    binanceApiService.newOrderSellLimit(order.getSymbol(), order.getSide(), order.getType(), order.getQuoteOrderQty(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
+        order.getIcebergQty(), order.getNewOrderRespType(), order.getRecvWindow(), order.getTimestamp(),order.getTimeInForce()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
+
+  @Override
   public void newOrderTest(NewOrder order, BinanceApiCallback<Void> callback) {
     binanceApiService.newOrderTest(order.getSymbol(), order.getSide(), order.getType(), order.getQuoteOrderQty(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
         order.getIcebergQty(), order.getNewOrderRespType(), order.getRecvWindow(), order.getTimestamp()).enqueue(new BinanceApiCallbackAdapter<>(callback));
