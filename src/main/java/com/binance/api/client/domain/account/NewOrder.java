@@ -32,6 +32,10 @@ public class NewOrder {
   /**
    * Quantity.
    */
+  private String quantity;
+  /**
+   * Quantity.
+   */
   private String quoteOrderQty;
 
   /**
@@ -86,7 +90,53 @@ public class NewOrder {
     this.recvWindow = BinanceApiConstants.DEFAULT_RECEIVING_WINDOW;
   }
 
+  public void setSymbol(String symbol) {
+    this.symbol = symbol;
+  }
 
+  public void setSide(OrderSide side) {
+    this.side = side;
+  }
+
+  public void setType(OrderType type) {
+    this.type = type;
+  }
+
+  public String getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(String quantity) {
+    this.quantity = quantity;
+  }
+
+  public void setQuoteOrderQty(String quoteOrderQty) {
+    this.quoteOrderQty = quoteOrderQty;
+  }
+
+  public void setNewClientOrderId(String newClientOrderId) {
+    this.newClientOrderId = newClientOrderId;
+  }
+
+  public void setStopPrice(String stopPrice) {
+    this.stopPrice = stopPrice;
+  }
+
+  public void setIcebergQty(String icebergQty) {
+    this.icebergQty = icebergQty;
+  }
+
+  public void setNewOrderRespType(NewOrderResponseType newOrderRespType) {
+    this.newOrderRespType = newOrderRespType;
+  }
+
+  public void setRecvWindow(Long recvWindow) {
+    this.recvWindow = recvWindow;
+  }
+
+  public void setTimestamp(long timestamp) {
+    this.timestamp = timestamp;
+  }
 
   public String getSymbol() {
     return symbol;

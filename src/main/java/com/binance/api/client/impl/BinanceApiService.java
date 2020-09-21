@@ -109,7 +109,7 @@ public interface BinanceApiService {
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @POST("/api/v3/order")
   Call<NewOrderResponse> newOrderBuyLimit(@Query("symbol") String symbol, @Query("side") OrderSide side, @Query("type") OrderType type,
-                                  @Query("quoteOrderQty") String quoteOrderQty, @Query("price") String price,
+                                  @Query("quantity") String quantity, @Query("price") String price,
                                   @Query("newClientOrderId") String newClientOrderId, @Query("stopPrice") String stopPrice,
                                   @Query("icebergQty") String icebergQty, @Query("newOrderRespType") NewOrderResponseType newOrderRespType,
                                   @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp, @Query("timeInForce") String timeInForce);

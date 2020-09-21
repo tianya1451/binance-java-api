@@ -143,7 +143,7 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
   @Override
   public NewOrderResponse newOrderBuyLimit(NewOrder order) {
     return executeSync(binanceApiService.newOrderBuyLimit(order.getSymbol(), order.getSide(), order.getType(),
-            order.getQuoteOrderQty(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
+            order.getQuantity(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
         order.getIcebergQty(), order.getNewOrderRespType(), order.getRecvWindow(), order.getTimestamp(),order.getTimeInForce()));
   }
   @Override
