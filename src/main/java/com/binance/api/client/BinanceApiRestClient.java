@@ -1,15 +1,6 @@
 package com.binance.api.client;
 
-import com.binance.api.client.domain.account.Account;
-import com.binance.api.client.domain.account.DepositAddress;
-import com.binance.api.client.domain.account.DepositHistory;
-import com.binance.api.client.domain.account.NewOrder;
-import com.binance.api.client.domain.account.NewOrderResponse;
-import com.binance.api.client.domain.account.Order;
-import com.binance.api.client.domain.account.Trade;
-import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.WithdrawHistory;
-import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.AllOrdersRequest;
 import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
@@ -155,6 +146,8 @@ public interface BinanceApiRestClient {
   List<BookTicker> getBookTickers();
 
   // Account endpoints
+
+  SwapNewOrder newSwapOrderBuy(SwapNewOrderRequest order);
 
   /**
    * Send in a new order.法币币种数量
@@ -316,4 +309,13 @@ public interface BinanceApiRestClient {
    * @param listenKey listen key that identifies a data stream
    */
   void closeUserDataStream(String listenKey);
+
+  SwapNewOrder getOrder(String symbol, String orderId, String origClientOrderId);
+
+  LeveRage setLeveRage(String symbol, Integer leverage);
+
+  SwapAccount getSwapAccount();
+
+
+  AccountTransfer transfer(String asset, String amount, String type);
 }

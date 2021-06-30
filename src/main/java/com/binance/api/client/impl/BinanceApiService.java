@@ -4,17 +4,11 @@ import com.binance.api.client.constant.BinanceApiConstants;
 import com.binance.api.client.domain.OrderSide;
 import com.binance.api.client.domain.OrderType;
 import com.binance.api.client.domain.TimeInForce;
-import com.binance.api.client.domain.account.Account;
-import com.binance.api.client.domain.account.DepositAddress;
-import com.binance.api.client.domain.account.DepositHistory;
-import com.binance.api.client.domain.account.NewOrderResponse;
-import com.binance.api.client.domain.account.NewOrderResponseType;
-import com.binance.api.client.domain.account.Order;
-import com.binance.api.client.domain.account.Trade;
-import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.WithdrawHistory;
-import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
+import com.binance.api.client.domain.enums.swap.NewOrderRespType;
+import com.binance.api.client.domain.enums.swap.PositionSide;
+import com.binance.api.client.domain.enums.swap.WorkingType;
 import com.binance.api.client.domain.event.ListenKey;
 import com.binance.api.client.domain.general.Asset;
 import com.binance.api.client.domain.general.ExchangeInfo;
@@ -34,6 +28,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
+import java.lang.ref.Reference;
 import java.util.List;
 
 /**
@@ -190,4 +185,30 @@ public interface BinanceApiService {
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
   @DELETE("/api/v1/userDataStream")
   Call<Void> closeAliveUserDataStream(@Query("listenKey") String listenKey);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @GET("/fapi/v1/order")
+  Call<SwapNewOrder> newSwapOrderBuy(@Query("symbol")String symbol, @Query("side")OrderSide side, @Query("positionSide")PositionSide positionSide,
+                                     @Query("orderType")com.binance.api.client.domain.enums.swap.OrderType orderType,
+                                     @Query("timeInForce")com.binance.api.client.domain.enums.swap.TimeInForce timeInForce, @Query("quantity")String quantity,
+                                     @Query("price")String price, @Query("reduceOnly")String reduceOnly, @Query("newClientOrderId")String newClientOrderId,
+                                     @Query("stopPrice")String stopPrice,
+                                     @Query("workingType")WorkingType workingType, @Query("newOrderRespType")NewOrderRespType newOrderRespType,
+                                     @Query("timestamp") Long timestamp);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @POST("/fapi/v1/order")
+  Call<SwapNewOrder> getOrder(@Query("symbol")String symbol, @Query("orderId")String orderId, @Query("origClientOrderId")String origClientOrderId, @Query("timestamp") Long timestamp);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @POST("/fapi/v1/leverage")
+  Call<LeveRage> setLeveRage(@Query("symbol")String symbol, @Query("leverage")Integer leverage, @Query("timestamp")long timestamp);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @GET("/fapi/v2/account")
+  Call<SwapAccount> getSwapAccount(@Query("timestamp") Long timestamp);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @POST("/sapi/v1/futures/transfer")
+  Call<AccountTransfer> transfer( @Query("asset")String asset, @Query("amount")String amount, @Query("type")String type, @Query("timestamp") Long timestamp);
 }

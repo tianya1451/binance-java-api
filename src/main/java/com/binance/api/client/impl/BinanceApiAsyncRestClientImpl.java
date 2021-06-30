@@ -3,16 +3,7 @@ package com.binance.api.client.impl;
 import com.binance.api.client.BinanceApiAsyncRestClient;
 import com.binance.api.client.BinanceApiCallback;
 import com.binance.api.client.constant.BinanceApiConstants;
-import com.binance.api.client.domain.account.Account;
-import com.binance.api.client.domain.account.DepositAddress;
-import com.binance.api.client.domain.account.DepositHistory;
-import com.binance.api.client.domain.account.NewOrder;
-import com.binance.api.client.domain.account.NewOrderResponse;
-import com.binance.api.client.domain.account.Order;
-import com.binance.api.client.domain.account.Trade;
-import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.WithdrawHistory;
-import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.AllOrdersRequest;
 import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
@@ -33,6 +24,7 @@ import com.binance.api.client.domain.market.TickerStatistics;
 import java.util.List;
 
 import static com.binance.api.client.impl.BinanceApiServiceGenerator.createService;
+import static com.binance.api.client.impl.BinanceApiServiceGenerator.executeSync;
 
 /**
  * Implementation of Binance's REST API using Retrofit with asynchronous/non-blocking method calls.
@@ -129,7 +121,12 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   public void getBookTickers(BinanceApiCallback<List<BookTicker>> callback) {
     binanceApiService.getBookTickers().enqueue(new BinanceApiCallbackAdapter<>(callback));
   }
-
+  @Override
+  public void newSwapOrderBuy(SwapNewOrderRequest order) {
+    binanceApiService.newSwapOrderBuy(order.getSymbol(), order.getSide(), order.getPositionSide(), order.getOrderType(),
+            order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getReduceOnly(),
+            order.getNewClientOrderId(), order.getStopPrice(), order.getWorkingType(), order.getNewOrderRespType(),System.currentTimeMillis());
+  }
   @Override
   public void newOrderBuy(NewOrder order, BinanceApiCallback<NewOrderResponse> callback) {
     binanceApiService.newOrderBuy(order.getSymbol(), order.getSide(), order.getType(), order.getQuoteOrderQty(), order.getPrice(), order.getNewClientOrderId(), order.getStopPrice(),
@@ -253,4 +250,24 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   public void closeUserDataStream(String listenKey, BinanceApiCallback<Void> callback) {
     binanceApiService.closeAliveUserDataStream(listenKey).enqueue(new BinanceApiCallbackAdapter<>(callback));
   }
+
+  @Override
+  public void getOrder(String symbol, String orderId, String origClientOrderId, BinanceApiCallback<SwapNewOrder> callback){
+    binanceApiService.getOrder(symbol,orderId,origClientOrderId,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
+
+    @Override
+    public void setLeveRage(String symbol, Integer leverage, BinanceApiCallback<LeveRage> callback){
+        binanceApiService.setLeveRage(symbol,leverage,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+    }
+
+    @Override
+    public void getSwapAccount(BinanceApiCallback<SwapAccount> callback){
+      binanceApiService.getSwapAccount(System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+    }
+
+    @Override
+    public void transfer(String asset,String amount,String type,BinanceApiCallback<AccountTransfer> callback){
+        binanceApiService.transfer(asset,amount,type,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+    }
 }
