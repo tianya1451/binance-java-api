@@ -182,8 +182,26 @@ public class SwapAccount {
             }
 
             assetBalance = (SwapAsset)var2.next();
-        } while(!symbol.equals(assetBalance.getAsset()));
+        } while(!symbol.equalsIgnoreCase(assetBalance.getAsset()));
 
         return assetBalance;
+    }
+
+    public SwapPosition getPosition(String symbol) {
+        Iterator var2 = this.positions.iterator();
+
+        SwapPosition position;
+        do {
+            if (!var2.hasNext()) {
+                SwapPosition emptyBalance = new SwapPosition();
+                emptyBalance.setSymbol(symbol);
+                emptyBalance.setPositionAmt("0");
+                return emptyBalance;
+            }
+
+            position = (SwapPosition) var2.next();
+        } while(!symbol.equalsIgnoreCase(position.getSymbol()));
+
+        return position;
     }
 }
