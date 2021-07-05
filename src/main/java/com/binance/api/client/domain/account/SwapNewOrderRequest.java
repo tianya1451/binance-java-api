@@ -25,6 +25,15 @@ public class SwapNewOrderRequest {
     private String stopPrice;
     private WorkingType workingType;
     private NewOrderRespType newOrderRespType;
+    private String closePosition;
+
+    public String getClosePosition() {
+        return closePosition;
+    }
+
+    public void setClosePosition(String closePosition) {
+        this.closePosition = closePosition;
+    }
 
     public String getSymbol() {
         return symbol;

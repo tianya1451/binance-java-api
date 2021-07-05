@@ -14,6 +14,8 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SwapNewOrder {
 
+  private BigDecimal avgPrice;
+
   private String clientOrderId;
 
   private BigDecimal cumQuote;
@@ -45,6 +47,14 @@ public class SwapNewOrder {
   private Long updateTime;
 
   private String workingType;
+
+  public BigDecimal getAvgPrice() {
+    return avgPrice;
+  }
+
+  public void setAvgPrice(BigDecimal avgPrice) {
+    this.avgPrice = avgPrice;
+  }
 
   public String getClientOrderId() {
     return clientOrderId;
