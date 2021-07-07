@@ -1,5 +1,8 @@
 package com.binance.api.client.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SwapAsset {
     private String asset;//资产
     private String walletBalance;//余额

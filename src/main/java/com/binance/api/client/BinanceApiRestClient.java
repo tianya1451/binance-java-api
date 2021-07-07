@@ -145,9 +145,7 @@ public interface BinanceApiRestClient {
    */
   List<BookTicker> getBookTickers();
 
-  // Account endpoints
 
-  SwapNewOrder newSwapOrderBuy(SwapNewOrderRequest order);
 
   /**
    * Send in a new order.法币币种数量
@@ -316,6 +314,9 @@ public interface BinanceApiRestClient {
 
   SwapAccount getSwapAccount();
 
+  AccountTransfer transfer(String asset, String amount, Integer type);
 
-  AccountTransfer transfer(String asset, String amount, String type);
+  // Account endpoints
+
+  SwapNewOrder newSwapOrder(SwapNewOrderRequest order);
 }

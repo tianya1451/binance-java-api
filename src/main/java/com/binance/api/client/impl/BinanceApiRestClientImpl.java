@@ -121,8 +121,8 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 
 
     @Override
-    public SwapNewOrder newSwapOrderBuy(SwapNewOrderRequest order) {
-        return executeSync(binanceApiService.newSwapOrderBuy(order.getSymbol(), order.getSide(), order.getPositionSide(), order.getOrderType(),
+    public SwapNewOrder newSwapOrder(SwapNewOrderRequest order) {
+        return executeSync(binanceApiService.newSwapOrder(order.getSymbol(), order.getSide(), order.getPositionSide(), order.getOrderType(),
                 order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getReduceOnly(),
                 order.getNewClientOrderId(), order.getStopPrice(), order.getWorkingType(), order.getNewOrderRespType(), System.currentTimeMillis()));
     }
@@ -258,14 +258,14 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 
     @Override
     public LeveRage setLeveRage(String symbol, Integer leverage){
-        return executeSync(binanceApiService.setLeveRage(symbol,leverage,System.currentTimeMillis()));
+        return executeSync(binanceApiService.setLeveRage(symbol,leverage,60000,System.currentTimeMillis()));
     }
     @Override
     public SwapAccount getSwapAccount(){
        return executeSync(binanceApiService.getSwapAccount(System.currentTimeMillis()));
     }
     @Override
-    public AccountTransfer transfer(String asset, String amount, String type){
+    public AccountTransfer transfer(String asset, String amount, Integer type){
         return executeSync(binanceApiService.transfer(asset,amount,type,System.currentTimeMillis()));
     }
 

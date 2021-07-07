@@ -186,9 +186,9 @@ public interface BinanceApiService {
   @DELETE("/api/v1/userDataStream")
   Call<Void> closeAliveUserDataStream(@Query("listenKey") String listenKey);
 
-  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @GET("/fapi/v1/order")
-  Call<SwapNewOrder> newSwapOrderBuy(@Query("symbol")String symbol, @Query("side")OrderSide side, @Query("positionSide")PositionSide positionSide,
+  Call<SwapNewOrder> newSwapOrder(@Query("symbol")String symbol, @Query("side")OrderSide side, @Query("positionSide")PositionSide positionSide,
                                      @Query("orderType")com.binance.api.client.domain.enums.swap.OrderType orderType,
                                      @Query("timeInForce")com.binance.api.client.domain.enums.swap.TimeInForce timeInForce, @Query("quantity")String quantity,
                                      @Query("price")String price, @Query("reduceOnly")String reduceOnly, @Query("newClientOrderId")String newClientOrderId,
@@ -196,19 +196,19 @@ public interface BinanceApiService {
                                      @Query("workingType")WorkingType workingType, @Query("newOrderRespType")NewOrderRespType newOrderRespType,
                                      @Query("timestamp") Long timestamp);
 
-  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @POST("/fapi/v1/order")
   Call<SwapNewOrder> getOrder(@Query("symbol")String symbol, @Query("orderId")String orderId, @Query("origClientOrderId")String origClientOrderId, @Query("timestamp") Long timestamp);
 
-  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @POST("/fapi/v1/leverage")
-  Call<LeveRage> setLeveRage(@Query("symbol")String symbol, @Query("leverage")Integer leverage, @Query("timestamp")long timestamp);
+  Call<LeveRage> setLeveRage(@Query("symbol")String symbol, @Query("leverage")Integer leverage,@Query("recvWindow") long recvWindow, @Query("timestamp")long timestamp);
 
-  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @GET("/fapi/v2/account")
   Call<SwapAccount> getSwapAccount(@Query("timestamp") Long timestamp);
 
-  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_APIKEY_HEADER)
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @POST("/sapi/v1/futures/transfer")
-  Call<AccountTransfer> transfer( @Query("asset")String asset, @Query("amount")String amount, @Query("type")String type, @Query("timestamp") Long timestamp);
+  Call<AccountTransfer> transfer( @Query("asset")String asset, @Query("amount")String amount, @Query("type")Integer type, @Query("timestamp") Long timestamp);
 }

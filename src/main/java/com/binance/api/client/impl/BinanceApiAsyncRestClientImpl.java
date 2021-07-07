@@ -122,8 +122,8 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
     binanceApiService.getBookTickers().enqueue(new BinanceApiCallbackAdapter<>(callback));
   }
   @Override
-  public void newSwapOrderBuy(SwapNewOrderRequest order) {
-    binanceApiService.newSwapOrderBuy(order.getSymbol(), order.getSide(), order.getPositionSide(), order.getOrderType(),
+  public void newSwapOrder(SwapNewOrderRequest order) {
+    binanceApiService.newSwapOrder(order.getSymbol(), order.getSide(), order.getPositionSide(), order.getOrderType(),
             order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getReduceOnly(),
             order.getNewClientOrderId(), order.getStopPrice(), order.getWorkingType(), order.getNewOrderRespType(),System.currentTimeMillis());
   }
@@ -258,7 +258,7 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
 
     @Override
     public void setLeveRage(String symbol, Integer leverage, BinanceApiCallback<LeveRage> callback){
-        binanceApiService.setLeveRage(symbol,leverage,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+        binanceApiService.setLeveRage(symbol,leverage,60000,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
     }
 
     @Override
@@ -267,7 +267,7 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
     }
 
     @Override
-    public void transfer(String asset,String amount,String type,BinanceApiCallback<AccountTransfer> callback){
+    public void transfer(String asset,String amount,Integer type,BinanceApiCallback<AccountTransfer> callback){
         binanceApiService.transfer(asset,amount,type,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
     }
 }

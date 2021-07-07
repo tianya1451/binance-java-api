@@ -159,7 +159,7 @@ public interface BinanceApiAsyncRestClient {
 
   // Account endpoints
 
-  void newSwapOrderBuy(SwapNewOrderRequest order);
+  void newSwapOrder(SwapNewOrderRequest order);
 
     /**
    * Send in a new order (asynchronous)
@@ -332,5 +332,5 @@ public interface BinanceApiAsyncRestClient {
 
   void getSwapAccount(BinanceApiCallback<SwapAccount> callback);
 
-  void transfer(String asset, String amount, String type, BinanceApiCallback<AccountTransfer> callback);
+  void transfer(String asset, String amount, Integer type, BinanceApiCallback<AccountTransfer> callback);
 }

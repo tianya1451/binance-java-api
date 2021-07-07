@@ -47,10 +47,14 @@ public class AuthenticationInterceptor implements Interceptor {
             if (!StringUtils.isEmpty(payload)) {
                 String signature = HmacSHA256Signer.sign(payload, secret);
                 HttpUrl signedUrl = original.url().newBuilder().addQueryParameter("signature", signature).build();
-                newRequestBuilder.url(signedUrl);
+                //合约地址替换
+                if(signedUrl.encodedPath().contains("/fapi/")){
+                    newRequestBuilder.url(signedUrl.toString().replace(BinanceApiConstants.API_BASE_URL,BinanceApiConstants.F_API_BASE_URL));
+                }else{
+                    newRequestBuilder.url(signedUrl);
+                }
             }
         }
-
         // Build new request after adding the necessary authentication information
         Request newRequest = newRequestBuilder.build();
         return chain.proceed(newRequest);

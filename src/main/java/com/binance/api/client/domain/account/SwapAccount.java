@@ -1,8 +1,11 @@
 package com.binance.api.client.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SwapAccount {
     private Integer feeTier;// 手续费等级
     private Boolean canTrade;// 是否可以交易
@@ -167,41 +170,32 @@ public class SwapAccount {
         this.positions = positions;
     }
 
-    public SwapAsset getAssetBalance(String symbol) {
+    public SwapAsset getAssetBalance(String asset) {
+
         Iterator var2 = this.assets.iterator();
 
         SwapAsset assetBalance;
         do {
-            if (!var2.hasNext()) {
-                SwapAsset emptyBalance = new SwapAsset();
-                emptyBalance.setAsset(symbol);
-                emptyBalance.setAvailableBalance("0");
-                emptyBalance.setMaxWithdrawAmount("0");
-                emptyBalance.setWalletBalance("0");
-                return emptyBalance;
-            }
-
             assetBalance = (SwapAsset)var2.next();
-        } while(!symbol.equalsIgnoreCase(assetBalance.getAsset()));
+            if (asset.equalsIgnoreCase(assetBalance.getAsset())) {
+                return assetBalance;
+            }
+        } while(var2.hasNext());
 
-        return assetBalance;
+        return null;
     }
 
-    public SwapPosition getPosition(String symbol) {
-        Iterator var2 = this.positions.iterator();
+    public List<SwapPosition> getPosition(String symbol) {
+        List<SwapPosition> result=new ArrayList<>();
+        Iterator var2 = this.assets.iterator();
 
         SwapPosition position;
         do {
-            if (!var2.hasNext()) {
-                SwapPosition emptyBalance = new SwapPosition();
-                emptyBalance.setSymbol(symbol);
-                emptyBalance.setPositionAmt("0");
-                return emptyBalance;
+            position = (SwapPosition)var2.next();
+            if (symbol.equalsIgnoreCase(position.getSymbol())) {
+                result.add(position);
             }
-
-            position = (SwapPosition) var2.next();
-        } while(!symbol.equalsIgnoreCase(position.getSymbol()));
-
-        return position;
+        } while(var2.hasNext());
+        return result;
     }
 }

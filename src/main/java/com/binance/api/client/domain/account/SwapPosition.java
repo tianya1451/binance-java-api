@@ -1,5 +1,8 @@
 package com.binance.api.client.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SwapPosition {
     private String symbol;// 交易对
     private String initialMargin;// 当前所需起始保证金(基于最新标记价格)
