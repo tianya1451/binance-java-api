@@ -187,9 +187,9 @@ public interface BinanceApiService {
   Call<Void> closeAliveUserDataStream(@Query("listenKey") String listenKey);
 
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
-  @GET("/fapi/v1/order")
+  @POST("/fapi/v1/order")
   Call<SwapNewOrder> newSwapOrder(@Query("symbol")String symbol, @Query("side")OrderSide side, @Query("positionSide")PositionSide positionSide,
-                                     @Query("orderType")com.binance.api.client.domain.enums.swap.OrderType orderType,
+                                     @Query("type")com.binance.api.client.domain.enums.swap.OrderType orderType,
                                      @Query("timeInForce")com.binance.api.client.domain.enums.swap.TimeInForce timeInForce, @Query("quantity")String quantity,
                                      @Query("price")String price, @Query("reduceOnly")String reduceOnly, @Query("newClientOrderId")String newClientOrderId,
                                      @Query("stopPrice")String stopPrice,
@@ -197,7 +197,7 @@ public interface BinanceApiService {
                                      @Query("timestamp") Long timestamp);
 
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
-  @POST("/fapi/v1/order")
+  @GET("/fapi/v1/order")
   Call<SwapNewOrder> getOrder(@Query("symbol")String symbol, @Query("orderId")String orderId, @Query("origClientOrderId")String origClientOrderId, @Query("timestamp") Long timestamp);
 
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
@@ -211,4 +211,8 @@ public interface BinanceApiService {
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @POST("/sapi/v1/futures/transfer")
   Call<AccountTransfer> transfer( @Query("asset")String asset, @Query("amount")String amount, @Query("type")Integer type, @Query("timestamp") Long timestamp);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+  @DELETE("/fapi/v1/allOpenOrders")
+  Call<SwapOrderCancel> cancelAllSwapOrders( @Query("symbol")String symbol, @Query("timestamp") Long timestamp);
 }

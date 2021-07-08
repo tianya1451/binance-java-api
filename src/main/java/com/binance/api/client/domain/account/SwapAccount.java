@@ -187,7 +187,7 @@ public class SwapAccount {
 
     public List<SwapPosition> getPosition(String symbol) {
         List<SwapPosition> result=new ArrayList<>();
-        Iterator var2 = this.assets.iterator();
+        Iterator var2 = this.positions.iterator();
 
         SwapPosition position;
         do {

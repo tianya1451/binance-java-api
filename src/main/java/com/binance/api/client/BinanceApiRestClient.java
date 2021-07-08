@@ -319,4 +319,6 @@ public interface BinanceApiRestClient {
   // Account endpoints
 
   SwapNewOrder newSwapOrder(SwapNewOrderRequest order);
+
+  SwapOrderCancel cancelAllSwapOrders(String symbol);
 }

@@ -270,4 +270,9 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
     public void transfer(String asset,String amount,Integer type,BinanceApiCallback<AccountTransfer> callback){
         binanceApiService.transfer(asset,amount,type,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
     }
+
+  @Override
+  public void cancelAllSwapOrders(String symbol,BinanceApiCallback<SwapOrderCancel> callback){
+    binanceApiService.cancelAllSwapOrders(symbol,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
 }

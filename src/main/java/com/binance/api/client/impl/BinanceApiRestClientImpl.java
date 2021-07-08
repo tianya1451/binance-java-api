@@ -268,5 +268,8 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     public AccountTransfer transfer(String asset, String amount, Integer type){
         return executeSync(binanceApiService.transfer(asset,amount,type,System.currentTimeMillis()));
     }
-
+    @Override
+    public SwapOrderCancel cancelAllSwapOrders(String symbol){
+        return executeSync(binanceApiService.cancelAllSwapOrders(symbol,System.currentTimeMillis()));
+    }
 }
