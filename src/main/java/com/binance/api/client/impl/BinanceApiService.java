@@ -192,7 +192,7 @@ public interface BinanceApiService {
                                      @Query("type")com.binance.api.client.domain.enums.swap.OrderType orderType,
                                      @Query("timeInForce")com.binance.api.client.domain.enums.swap.TimeInForce timeInForce, @Query("quantity")String quantity,
                                      @Query("price")String price, @Query("reduceOnly")String reduceOnly, @Query("newClientOrderId")String newClientOrderId,
-                                     @Query("stopPrice")String stopPrice,
+                                     @Query("stopPrice")String stopPrice,@Query("closePosition") String closePosition,
                                      @Query("workingType")WorkingType workingType, @Query("newOrderRespType")NewOrderRespType newOrderRespType,
                                      @Query("timestamp") Long timestamp);
 

@@ -125,7 +125,7 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   public void newSwapOrder(SwapNewOrderRequest order) {
     binanceApiService.newSwapOrder(order.getSymbol(), order.getSide(), order.getPositionSide(), order.getOrderType(),
             order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getReduceOnly(),
-            order.getNewClientOrderId(), order.getStopPrice(), order.getWorkingType(), order.getNewOrderRespType(),System.currentTimeMillis());
+            order.getNewClientOrderId(), order.getStopPrice(),order.getClosePosition(), order.getWorkingType(), order.getNewOrderRespType(),System.currentTimeMillis());
   }
   @Override
   public void newOrderBuy(NewOrder order, BinanceApiCallback<NewOrderResponse> callback) {
