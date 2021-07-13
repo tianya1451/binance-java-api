@@ -335,4 +335,6 @@ public interface BinanceApiAsyncRestClient {
   void transfer(String asset, String amount, Integer type, BinanceApiCallback<AccountTransfer> callback);
 
   void cancelAllSwapOrders(String symbol, BinanceApiCallback<SwapOrderCancel> callback);
+
+  void getOpenOrder(String symbol, String orderId, String origClientOrderId, BinanceApiCallback<SwapNewOrder> callback);
 }

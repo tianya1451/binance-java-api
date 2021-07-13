@@ -255,6 +255,10 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     public SwapNewOrder getOrder(String symbol, String orderId, String origClientOrderId) {
         return executeSync(binanceApiService.getOrder(symbol, orderId, origClientOrderId, System.currentTimeMillis()));
     }
+    @Override
+    public SwapNewOrder getOpenOrder(String symbol, String orderId, String origClientOrderId) {
+        return executeSync(binanceApiService.getOpenOrder(symbol, orderId, origClientOrderId, System.currentTimeMillis()));
+    }
 
     @Override
     public LeveRage setLeveRage(String symbol, Integer leverage){

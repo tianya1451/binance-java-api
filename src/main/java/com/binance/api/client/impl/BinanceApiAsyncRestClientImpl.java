@@ -256,6 +256,11 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
     binanceApiService.getOrder(symbol,orderId,origClientOrderId,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
   }
 
+  @Override
+  public void getOpenOrder(String symbol, String orderId, String origClientOrderId, BinanceApiCallback<SwapNewOrder> callback){
+    binanceApiService.getOpenOrder(symbol,orderId,origClientOrderId,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+  }
+
     @Override
     public void setLeveRage(String symbol, Integer leverage, BinanceApiCallback<LeveRage> callback){
         binanceApiService.setLeveRage(symbol,leverage,60000,System.currentTimeMillis()).enqueue(new BinanceApiCallbackAdapter<>(callback));

@@ -215,4 +215,8 @@ public interface BinanceApiService {
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @DELETE("/fapi/v1/allOpenOrders")
   Call<SwapOrderCancel> cancelAllSwapOrders( @Query("symbol")String symbol, @Query("timestamp") Long timestamp);
+
+  @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
+  @GET("/fapi/v1/openOrder")
+  Call<SwapNewOrder> getOpenOrder(@Query("symbol")String symbol, @Query("orderId")String orderId, @Query("origClientOrderId")String origClientOrderId, @Query("timestamp") Long timestamp);
 }

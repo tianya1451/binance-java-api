@@ -310,6 +310,8 @@ public interface BinanceApiRestClient {
 
   SwapNewOrder getOrder(String symbol, String orderId, String origClientOrderId);
 
+  SwapNewOrder getOpenOrder(String symbol, String orderId, String origClientOrderId);
+
   LeveRage setLeveRage(String symbol, Integer leverage);
 
   SwapAccount getSwapAccount();
